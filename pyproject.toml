@@ -1,0 +1,32 @@
+[project]
+name = "tremor"
+version = "0.1.0"
+description = "Trend intelligence pipeline — detect developer discussion velocity before it explodes"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27",
+    "pydantic>=2.0",
+    "aiosqlite>=0.20",
+    "rich>=13.0",
+    "typer>=0.12",
+    "google-genai>=1.0",
+    "trafilatura>=2.0",
+]
+
+[project.scripts]
+tremor = "tremor.interfaces.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tremor"]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "respx>=0.21",
+]
