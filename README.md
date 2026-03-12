@@ -18,7 +18,7 @@ Hacker News + Reddit
   generate drafts
 ```
 
-Velocity = `score / age_hours`. Signals that spike fast, across multiple platforms simultaneously, are the strongest indicator of an emerging trend.
+Velocity = `score / age_hours`. Signals that spike fast across multiple platforms simultaneously are the strongest indicator of an emerging trend.
 
 ## Setup
 
@@ -56,30 +56,6 @@ tremor draft --no-reddit
 tremor draft --subreddits "rust,golang,devops"
 tremor draft --threshold 20
 tremor top --limit 20
-```
-
-## Architecture
-
-```
-src/tremor/
-├── domain/
-│   ├── models.py        Signal, VelocityScore, TrendCluster, CrawledContent
-│   └── scoring.py       velocity calculation
-├── adapters/
-│   ├── base.py          BaseAdapter ABC
-│   ├── hackernews.py    HN Firebase API
-│   ├── reddit.py        Reddit public JSON API
-│   └── twitter.py       Twitter API v2 (requires bearer token)
-├── application/
-│   ├── pipeline.py      orchestration
-│   ├── clustering.py    Union-Find keyword clustering
-│   └── content.py       Gemini-powered post angle generation
-├── infrastructure/
-│   ├── store.py         SQLite persistence
-│   ├── crawler.py       article text extraction (trafilatura)
-│   └── scheduler.py     interval runner
-└── interfaces/
-    └── cli.py           Typer CLI
 ```
 
 ## Adding a new source
